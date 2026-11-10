@@ -1,5 +1,5 @@
 package main
-
+//Создал чтобы закомитить
 import (
 	"fmt"
 	"strings"
