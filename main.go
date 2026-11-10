@@ -1,5 +1,5 @@
 package main
-//Создал чтобы закомитить
+
 import (
 	"fmt"
 	"strings"
@@ -23,10 +23,10 @@ func main() {
 		"ERROR|2024-01-01 10:04:00|Timeout",
 	}
 
-	results := make(chan Result, len(logs))
+	results := make(chan Result)
 
 	var infoCount, warnCount, errorCount int
-
+go func() {
 	for _, log := range logs {
 		parts := strings.Split(log, "|")
 		if len(parts) == 3 {
@@ -37,7 +37,7 @@ func main() {
 		}
 	}
 	close(results)
-
+}()
 	for res := range results {
 		switch res.Level {
 		case "INFO":
